@@ -695,23 +695,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/api/create-api-account/byok": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Create a borrower API account with a client-generated API key (BYOK - Bring Your Own Key). */
-    post: operations["post_create_api_account_byok"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/api/disputes": {
     parameters: {
       query?: never;
@@ -1591,14 +1574,6 @@ export interface components {
        *     Example: ?status=Requested,Approved
        */
       status?: components["schemas"]["ContractStatus"][];
-    };
-    /** @description Request for creating an API account with BYOK (Bring Your Own Key) */
-    CreateApiAccountByokRequest: {
-      api_key: string;
-      email: string;
-      name: string;
-      referral_code: string;
-      timezone?: string | null;
     };
     CreateApiAccountRequest: {
       email?: string | null;
@@ -3627,30 +3602,6 @@ export interface operations {
     };
     responses: {
       /** @description If successful, return new user object which holds the new API key. Note: the API key is only returned once! */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["CreateApiAccountResponse"];
-        };
-      };
-    };
-  };
-  post_create_api_account_byok: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CreateApiAccountByokRequest"];
-      };
-    };
-    responses: {
-      /** @description If successful, return new user object with the provided API key. Note: the API key is returned as provided! */
       200: {
         headers: {
           [name: string]: unknown;
