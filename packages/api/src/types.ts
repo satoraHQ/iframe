@@ -557,6 +557,7 @@ export type LoanType =
   | "MoonCardInstant"
   | "StableCoin"
   | "Fiat"
+  // Legacy: historical contracts only; integration removed.
   | "Bringin";
 
 export type RepaymentPlan =

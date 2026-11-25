@@ -319,40 +319,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/api/bringin/api-key": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Check if borrower has Bringin API key. */
-    get: operations["has_api_key"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/api/bringin/connect": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Connect borrower with Bringin service. */
-    post: operations["post_connect_with_bringin"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/api/chat/notification": {
     parameters: {
       query?: never;
@@ -1245,9 +1211,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
-    ApiKey: {
-      has_key: boolean;
-    };
     /** @description Public information about an API key. */
     ApiKeyInfo: {
       /** Format: date-time */
@@ -2181,13 +2144,6 @@ export interface components {
       /** Format: double */
       first_time_discount_rate_referee: number;
     };
-    PostConnectWithBringinRequest: {
-      bringin_email: string;
-    };
-    PostConnectWithBringinResponse: {
-      /** Format: uri */
-      signup_url?: string | null;
-    };
     PsbtQueryParams: {
       /** Format: int64 */
       fee_rate: number;
@@ -3011,57 +2967,6 @@ export interface operations {
         content?: never;
       };
       /** @description Invalid verification code or user already verified */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-    };
-  };
-  has_api_key: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description API key status */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ApiKey"];
-        };
-      };
-    };
-  };
-  post_connect_with_bringin: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["PostConnectWithBringinRequest"];
-      };
-    };
-    responses: {
-      /** @description Bringin connection initiated successfully */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["PostConnectWithBringinResponse"];
-        };
-      };
-      /** @description Invalid email address */
       400: {
         headers: {
           [name: string]: unknown;
